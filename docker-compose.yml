@@ -4,7 +4,7 @@ services:
     container_name: mouldflow
     build: ./mouldflow
     volumes:
-      - C:/VisualStudioCode/mouldflow/mouldflow:/mouldflow_app # dev
+      - ./mouldflow:/mouldflow_app # dev
     networks:
       - docker_network
 
@@ -15,15 +15,27 @@ services:
     ports:
       - 443:443
     volumes:
-      - C:/VisualStudioCode/mouldflow/nginx_conf/nginx.conf:/etc/nginx/nginx.conf
-      - C:/VisualStudioCode/mouldflow/nginx_conf/BEWS005.crt:/etc/nginx/conf/BEWS005.crt
-      - C:/VisualStudioCode/mouldflow/nginx_conf/BEWS005.key:/etc/nginx/conf/BEWS005.key
+      - ./nginx_conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx_conf/BEWS005.crt:/etc/nginx/conf/BEWS005.crt
+      - ./nginx_conf/BEWS005.key:/etc/nginx/conf/BEWS005.key
     links:
       - mouldflow:mouldflow
     networks:
       - docker_network
 
-
+  mosquitto:
+    container_name: msq_mouldflow
+    build: ./mosquitto_conf
+    ports:
+      - 1883:1883
+      - 8883:8883
+    networks:
+      - docker_network
+    volumes:
+      - ./mosquitto_conf/mosquitto-data:/mosquitto/data
+      - ./mosquitto_conf/mosquitto-logs:/mosquitto/logs
+      - ./mosquitto_conf/mosquitto-conf:/mosquitto/config
+    restart: unless-stopped
 
 networks:
   docker_network:
