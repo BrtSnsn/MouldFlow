@@ -1,0 +1,14 @@
+# syntax=docker/dockerfile:1
+FROM python:3.10-bullseye
+ENV TZ=Europe/Paris
+WORKDIR /mouldflow_app
+
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+
+# COPY main.py main.py    # live
+# COPY . /mouldflow_app/  # live
+
+
+ENTRYPOINT ["streamlit", "run"]
+CMD ["main.py"]

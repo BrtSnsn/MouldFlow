@@ -1,0 +1,42 @@
+#Inspiration:
+#https://www.sslcertificaten.nl/support/OpenSSL/OpenSSL_-_Aanmaken_self-signed_certificaat
+#https://discuss.streamlit.io/t/how-to-use-streamlit-with-nginx/378/28?page=2 (and ssl)
+#https://discuss.streamlit.io/t/streamlit-docker-nginx-ssl-https/2195/6
+#https://phoenixnap.com/kb/redirect-http-to-https-nginx
+
+
+1° Install openssl on windows
+First download and install the latest openssl.
+Download from -> https://slproweb.com/products/Win32OpenSSL.html
+I downloaded: Win64 OpenSSL v3.0.3
+
+2° Get server hostname:
+hostname
+LT01179
+
+3°
+#openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout www_sslcertificaten_nl.key -out www_sslcertificaten_nl.crt
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout LT01179.key -out LT01179.crt
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout BEWS005.key -out BEWS005.crt
+
+
+4° Check nginx config structure and different config files
+nginx -T
+
+5°
+#https://docs.vmware.com/en/VMware-Adapter-for-SAP-Landscape-Management/2.1.0/Installation-and-Administration-Guide-for-VLA-Administrators/GUID-D60F08AD-6E54-4959-A272-458D08B8B038.html
+Procedure
+Open the browser.
+Click Customize and control Google Chrome button in the upper right corner.
+Choose Settings. ...
+Under Privacy and security section, click More. ...
+Click Manage certificates, The new window will appear. ...
+Choose Trusted Root Certification Authorities tab.
+Click Import. ...
+In the opened window, click Next.
+
+
+
+BERT
+https://discuss.streamlit.io/t/host-streamlit-app-at-a-subfolder/1830/5
+https://ngbala6.medium.com/deploy-streamlit-app-on-nginx-cfa327106050
