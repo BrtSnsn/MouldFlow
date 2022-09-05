@@ -3,6 +3,11 @@ from scripts.helpers import Mqtt as mqtt
 from datetime import datetime
 # import pandas as pd
 
+"""
+Todo: postgresql database maken met alle matrijzen erin -> dan kan je de huidige status van een matrijs bekijken
+in feite zou deze matrijs positie database aanwezig moeten zijn in de central broker en met een mqtt message bevraag je de database en stuurt hij signaal terug
+"""
+
 st.set_page_config(
     page_title="Orac MouldFlow",
     page_icon="⭕",
